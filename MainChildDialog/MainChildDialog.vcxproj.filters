@@ -33,13 +33,13 @@
     <ClInclude Include="pch.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="ChildOpenGL.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="glm.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Hand.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="MainChildDialogDlg_Child.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
@@ -53,9 +53,6 @@
     <ClCompile Include="pch.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="ChildOpenGL.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="include\gltools.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -63,6 +60,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="glm.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="MainChildDialogDlg_Child.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

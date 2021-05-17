@@ -186,23 +186,23 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="ChildOpenGL.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="glm.h" />
     <ClInclude Include="Hand.h" />
     <ClInclude Include="MainChildDialog.h" />
     <ClInclude Include="MainChildDialogDlg.h" />
+    <ClInclude Include="MainChildDialogDlg_Child.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ChildOpenGL.cpp" />
     <ClCompile Include="glm.cpp" />
     <ClCompile Include="include\gltools.cpp" />
     <ClCompile Include="include\math3d.cpp" />
     <ClCompile Include="MainChildDialog.cpp" />
     <ClCompile Include="MainChildDialogDlg.cpp" />
+    <ClCompile Include="MainChildDialogDlg_Child.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
