@@ -6,7 +6,7 @@
 #ifndef _MATH3D_LIBRARY__
 #define _MATH3D_LIBRARY__
 
-#include "../pch.h"
+#include "pch.h"
 #include <math.h>
 #include <memory.h>
 

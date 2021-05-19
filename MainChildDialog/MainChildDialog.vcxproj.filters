@@ -42,6 +42,12 @@
     <ClInclude Include="MainChildDialogDlg_Child.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="include\gltools.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="include\math3d.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainChildDialog.cpp">
@@ -53,16 +59,16 @@
     <ClCompile Include="pch.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="include\gltools.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="include\math3d.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="glm.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="MainChildDialogDlg_Child.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="include\gltools.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="include\math3d.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

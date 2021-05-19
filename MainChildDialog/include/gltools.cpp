@@ -7,11 +7,11 @@
  *
  */
 
+#include "pch.h"
 #include "gltools.h"
 #include "math3d.h"
 #include <stdio.h>
 #include <assert.h>
-
 
 ///////////////////////////////////////////////////////////////////////////////
 // Get the OpenGL version number
@@ -663,7 +663,4 @@ GLhandleARB gltLoadShaderPair(const char *szVertexProg, const char *szFragmentPr
     glDeleteObjectARB(hFragmentShader);  
     
     return hReturn;  
-	}   
-
-
-
+}

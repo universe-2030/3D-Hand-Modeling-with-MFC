@@ -602,9 +602,12 @@ void MainChildDialogDlg_Child::OnTimer(UINT_PTR nIDEvent) {
 
 	CDialogEx::OnTimer(nIDEvent);
 
+	// Hand motion
 	if (++jointIndex > 14)
 		jointIndex = 0;
 	rightHand.setJointIndex(jointIndex);
+
+
 	this->Invalidate(FALSE);
 }
 
