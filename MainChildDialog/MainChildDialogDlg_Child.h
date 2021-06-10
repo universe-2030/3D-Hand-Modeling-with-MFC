@@ -5,6 +5,7 @@
 #include "GL/glew.h"
 #include "glm.h"
 #include "Hand.h"
+#include "MatchDevice.h"
 
 // MainChildDialogDlg_Child 대화 상자
 
@@ -32,6 +33,10 @@ private:
 	HGLRC	m_hRC;
 	CDC*	m_pDC;
 	HDC		m_hDC;
+
+	MatchDevice* MATCH_Dev;
+	double* Euler_shoulder;
+	bool isMATCHconnected = FALSE;
 
 public:
 	void SetupRC();

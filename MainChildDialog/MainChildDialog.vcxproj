@@ -191,9 +191,11 @@
     <ClInclude Include="Hand.h" />
     <ClInclude Include="include\gltools.h" />
     <ClInclude Include="include\math3d.h" />
+    <ClInclude Include="LuMatchFdn.h" />
     <ClInclude Include="MainChildDialog.h" />
     <ClInclude Include="MainChildDialogDlg.h" />
     <ClInclude Include="MainChildDialogDlg_Child.h" />
+    <ClInclude Include="MatchDevice.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
@@ -205,6 +207,7 @@
     <ClCompile Include="MainChildDialog.cpp" />
     <ClCompile Include="MainChildDialogDlg.cpp" />
     <ClCompile Include="MainChildDialogDlg_Child.cpp" />
+    <ClCompile Include="MatchDevice.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

@@ -29,20 +29,17 @@ int			jointIndex = 0;
 IMPLEMENT_DYNAMIC(MainChildDialogDlg_Child, CDialogEx)
 
 MainChildDialogDlg_Child::MainChildDialogDlg_Child(CWnd* pParent /*=nullptr*/)
-	: CDialogEx(IDD_DIALOG_CHILD_OPENGL, pParent)
-{
+	: CDialogEx(IDD_DIALOG_CHILD_OPENGL, pParent) {
 
 }
 
-MainChildDialogDlg_Child::~MainChildDialogDlg_Child()
-{
+MainChildDialogDlg_Child::~MainChildDialogDlg_Child() {
+
 }
 
-void MainChildDialogDlg_Child::DoDataExchange(CDataExchange* pDX)
-{
+void MainChildDialogDlg_Child::DoDataExchange(CDataExchange* pDX) {
 	CDialogEx::DoDataExchange(pDX);
 }
-
 
 BEGIN_MESSAGE_MAP(MainChildDialogDlg_Child, CDialogEx)
 	ON_WM_PAINT()
@@ -69,6 +66,23 @@ BOOL MainChildDialogDlg_Child::OnInitDialog()
 	glutInitWindowSize(500, 500);
 	glutInitWindowPosition(900, 700);
 	glutCreateWindow("OpenGL 3D Model Demo");
+
+	Euler_shoulder = new double[3];
+
+	MATCH_Dev = new MatchDevice();
+	if (MATCH_Dev->InitMATCH()) {
+		MessageBox(_T("Unable to initialize the MATCH device"), _T("Warning"), MB_ICONERROR);
+	}
+
+	MATCH_Dev->GetDataAddress();
+
+	isMATCHconnected = TRUE;
+	if (MATCH_Dev->OpenMATCH()) {
+		MessageBox(_T("Unable to open the MATCH device"), _T("Warning"), MB_ICONERROR);
+		MessageBox(_T("Starting demo program - Use 'Load data'"), _T("Notice"), MB_ICONASTERISK);
+		MATCH_Dev->CloseMATCH();
+		isMATCHconnected = FALSE;
+	}
 
 	SetupRC();
 	SetTimer(1000, 50, NULL);
@@ -142,9 +156,9 @@ void MainChildDialogDlg_Child::SetupRC()
 	//	spheres[iSphere].SetOrigin(x, 0.0f, z);
 	//}
 
-	M3DVector3f up = { -0.614193, 0.690447, 0.382165 };
-	M3DVector3f origin = { 5.12, 7.09, -5.57 };
-	M3DVector3f look = { -0.51938, -0.71827, 0.4629628 };
+	M3DVector3f up = { -0.38, 0.86, -0.34 };
+	M3DVector3f origin = { 10.75, 9.81, 0.83 };
+	M3DVector3f look = { -0.49, -0.79, -0.72 };
 	frameCamera.SetForwardVector(look);
 	frameCamera.SetOrigin(origin);
 	frameCamera.SetUpVector(up);
@@ -157,7 +171,7 @@ void MainChildDialogDlg_Child::DrawGround(void)
 {
 	const GLfloat fExtent = 100.0f;
 	const GLfloat fStep = 0.5f;
-	GLfloat y = -0.4f;
+	GLfloat y = -6.0f;
 	GLfloat iLine;
 
 	glLineWidth(1);
@@ -210,123 +224,6 @@ void MainChildDialogDlg_Child::RenderScene(void)
 	glTranslatef(1, 0, 1);
 	//glScalef(0.1, 0.1, 0.1);
 	glColor3ub(255, 0, 255);
-
-#pragma region PolygonObject_Solid
-
-	glEnable(GL_POLYGON_OFFSET_FILL);
-	glPolygonOffset(.5, .5);
-	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-
-	//Back
-	glColor3ub(0, 0, 0);
-	glBegin(GL_POLYGON);
-	glNormal3f(0, 0, -1);
-	glVertex3fv(vertices[0]);
-	glVertex3fv(vertices[1]);
-	glVertex3fv(vertices[2]);
-	glVertex3fv(vertices[3]);
-	glEnd();
-
-	//Front
-	glColor3ub(255, 0, 255);
-	glBegin(GL_POLYGON);
-	glNormal3f(0, 0, 1);
-	glVertex3fv(vertices[4]);
-	glVertex3fv(vertices[5]);
-	glVertex3fv(vertices[6]);
-	glVertex3fv(vertices[7]);
-	glEnd();
-
-	//Top
-	glColor3ub(0, 0, 255);
-	glBegin(GL_POLYGON);
-	glNormal3f(0, 1, 0);
-	glVertex3fv(vertices[0]);
-	glVertex3fv(vertices[1]);
-	glVertex3fv(vertices[2]);
-	glVertex3fv(vertices[3]);
-	glEnd();
-
-	//Bottom
-	glColor3ub(255, 255, 255);
-	glBegin(GL_POLYGON);
-	glNormal3f(0, -1, 0);
-	glVertex3fv(vertices[1]);
-	glVertex3fv(vertices[0]);
-	glVertex3fv(vertices[4]);
-	glVertex3fv(vertices[5]);
-	glEnd();
-
-	//Left
-	glColor3ub(0, 255, 0);
-	glBegin(GL_POLYGON);
-	glVertex3fv(vertices[0]);
-	glVertex3fv(vertices[3]);
-	glVertex3fv(vertices[7]);
-	glVertex3fv(vertices[4]);
-	glEnd();
-
-	//Right
-	glColor3ub(255, 0, 0);
-	glBegin(GL_POLYGON);
-	glVertex3fv(vertices[1]);
-	glVertex3fv(vertices[2]);
-	glVertex3fv(vertices[6]);
-	glVertex3fv(vertices[5]);
-	glEnd();
-	glDisable(GL_POLYGON_OFFSET_FILL);
-#pragma endregion
-
-#pragma region PolygonObject_Wire
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-	glColor3ub(255, 255, 255);
-	glBegin(GL_POLYGON);
-	glVertex3fv(vertices[0]);
-	glVertex3fv(vertices[1]);
-	glVertex3fv(vertices[2]);
-	glVertex3fv(vertices[3]);
-	glEnd();
-
-	//Front
-	glBegin(GL_POLYGON);
-	glVertex3fv(vertices[4]);
-	glVertex3fv(vertices[5]);
-	glVertex3fv(vertices[6]);
-	glVertex3fv(vertices[7]);
-	glEnd();
-
-	//Top
-	glBegin(GL_POLYGON);
-	glVertex3fv(vertices[0]);
-	glVertex3fv(vertices[1]);
-	glVertex3fv(vertices[2]);
-	glVertex3fv(vertices[3]);
-	glEnd();
-
-	//Bottom
-	glBegin(GL_POLYGON);
-	glVertex3fv(vertices[1]);
-	glVertex3fv(vertices[0]);
-	glVertex3fv(vertices[4]);
-	glVertex3fv(vertices[5]);
-	glEnd();
-
-	//Left
-	glBegin(GL_POLYGON);
-	glVertex3fv(vertices[0]);
-	glVertex3fv(vertices[3]);
-	glVertex3fv(vertices[7]);
-	glVertex3fv(vertices[4]);
-	glEnd();
-
-	//Right
-	glBegin(GL_POLYGON);
-	glVertex3fv(vertices[1]);
-	glVertex3fv(vertices[2]);
-	glVertex3fv(vertices[6]);
-	glVertex3fv(vertices[5]);
-	glEnd();
-#pragma endregion
 
 	glPopMatrix();
 #pragma endregion
@@ -405,7 +302,7 @@ void MainChildDialogDlg_Child::myKeys(unsigned char key, int x, int y)
 		/* Your Implementation */
 		//Ex:  frametorus.????
 		//hand[0].MoveForward(.1f);
-		if (++jointIndex > 14)
+		if (++jointIndex > 19)
 			jointIndex = 0;
 		rightHand.setJointIndex(jointIndex);
 
@@ -414,7 +311,7 @@ void MainChildDialogDlg_Child::myKeys(unsigned char key, int x, int y)
 		/* Your Implementation */
 		//hand[0].MoveForward(-.1f);
 		if (--jointIndex < 0)
-			jointIndex = 14;
+			jointIndex = 19;
 		rightHand.setJointIndex(jointIndex);
 
 		break;
@@ -603,10 +500,17 @@ void MainChildDialogDlg_Child::OnTimer(UINT_PTR nIDEvent) {
 	CDialogEx::OnTimer(nIDEvent);
 
 	// Hand motion
-	if (++jointIndex > 14)
-		jointIndex = 0;
-	rightHand.setJointIndex(jointIndex);
+	if (isMATCHconnected) {
+		rightHand.setJointIndex(19);
 
+		MATCH_Dev->GetSensorData();
+		Euler_shoulder[0] = MATCH_Dev->Get_aEuler(3);
+		rightHand.Set_shoulderDeg(Euler_shoulder[0]);
+		Euler_shoulder[1] = MATCH_Dev->Get_aEuler(4);
+		rightHand.Set_shoulderDeg_2(Euler_shoulder[1]);
+		Euler_shoulder[2] = MATCH_Dev->Get_aEuler(5);
+		rightHand.Set_shoulderDeg_3(Euler_shoulder[2]);
+	}
 
 	this->Invalidate(FALSE);
 }

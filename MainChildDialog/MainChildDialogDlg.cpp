@@ -12,8 +12,6 @@
 #define new DEBUG_NEW
 #endif
 
-// 응용 프로그램 정보에 사용되는 CAboutDlg 대화 상자입니다.
-
 class CAboutDlg : public CDialogEx
 {
 public:
@@ -111,7 +109,6 @@ BOOL CMainChildDialogDlg::OnInitDialog()
 	p_ChildDlg->ShowWindow(SW_SHOW);
 	p_ChildDlg->MoveWindow(rectofDialogArea);
 
-
 	return TRUE;  // 포커스를 컨트롤에 설정하지 않으면 TRUE를 반환합니다.
 }
 
@@ -174,6 +171,7 @@ void CMainChildDialogDlg::OnTimer(UINT_PTR nIDEvent) {
 	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
 
 	CDialogEx::OnTimer(nIDEvent);
+
 }
 
 
@@ -182,7 +180,6 @@ int CMainChildDialogDlg::OnCreate(LPCREATESTRUCT lpCreateStruct) {
 		return -1;
 
 	// TODO:  여기에 특수화된 작성 코드를 추가합니다.
-	
 
 	return 0;
 }
